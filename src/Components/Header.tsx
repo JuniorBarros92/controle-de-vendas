@@ -1,13 +1,12 @@
 import React from "react";
-import { useData } from "../Context/DataContext";
+
+import DateRanger from "./DateRanger";
 
 const Header: React.FC = () => {
 
-  const {data} = useData();
-  console.log(data)
   return (
     <header>
-      <h1>Header</h1>
+      <DateRanger />
     </header>
   );
 };
