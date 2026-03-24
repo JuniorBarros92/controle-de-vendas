@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../Context/DataContext";
+import GraficoVendas from "../Components/GraficoVendas";
 
 const Resumo: React.FC = () => {
   const {data} = useData();
@@ -37,6 +38,7 @@ const Resumo: React.FC = () => {
         </div>
       </div>
       <div className="box mb">Gráficos</div>
+      <GraficoVendas data={data} />
     </section>
   );
 };
