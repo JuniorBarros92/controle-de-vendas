@@ -1,10 +1,30 @@
 import React from "react";
+import useFetch from "../Hooks/useFetch";
+import type { Ivenda } from "../Context/DataContext";
+import { useParams } from "react-router-dom";
+import Loading from "../Components/Loading";
+
+type VendaSemData = Omit<Ivenda, "data">;
 
 const Venda: React.FC = () => {
+const {id} = useParams();
+const {data, loading} = useFetch<VendaSemData>(`https://data.origamid.dev/vendas/${id}`);
+
+if (loading === true) return <Loading />;
+  if (data === null) return null;
   return (
     <div>
-      <h1>Venda</h1>
-      <p>Detalhes da venda</p>
+      <div className="box mb">ID: {data.id}</div>
+      <div className="box mb">Nome: {data.nome}</div>
+      <div className="box mb">
+        Preço:{" "}
+        {data.preco.toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })}
+      </div>
+      <div className="box mb">Status: {data.status}</div>
+      <div className="box mb">Pagamento: {data.pagamento}</div>
     </div>
   );
 };
